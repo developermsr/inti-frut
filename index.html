@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inti Frut - Sabor saludable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-claro: #a8e6cf;
+            --amarillo-patito: #ffd166;
+            --verde-oscuro: #2d6a4f;
+            --blanco: #ffffff;
+            --sombra: rgba(0, 0, 0, 0.1);
+            --sombra-profunda: rgba(0, 0, 0, 0.2);
+            --gradiente: linear-gradient(135deg, var(--verde-claro), var(--amarillo-patito));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--verde-claro);
+            color: var(--verde-oscuro);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, var(--verde-oscuro), rgba(45, 106, 79, 0.9));
+            color: var(--blanco);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px var(--sombra-profunda);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--amarillo-patito);
+            animation: pulse 3s infinite;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--amarillo-patito);
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+            padding: 5px 0;
+            cursor: pointer;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--amarillo-patito);
+            transition: width 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--amarillo-patito);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--blanco);
+        }
+
+        /* Secciones */
+        .section {
+            display: none;
+            min-height: 100vh;
+            padding-top: 100px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Banner */
+        .banner {
+            position: relative;
+            height: 50vh;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+            border-radius: 0 0 20px 20px;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(45, 106, 79, 0.7), rgba(45, 106, 79, 0.7));
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--blanco);
+            padding: 0 20px;
+        }
+
+        .banner h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--amarillo-patito);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .banner p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Sección Inicio */
+        #inicio {
+            background: linear-gradient(to bottom, var(--verde-claro), var(--blanco));
+        }
+
+        .hero {
+            background: linear-gradient(rgba(45, 106, 79, 0.85), rgba(45, 106, 79, 0.85)), 
+                        url('https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') center/cover;
+            color: var(--blanco);
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 209, 102, 0.1) 0%, transparent 70%);
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--amarillo-patito);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--gradiente);
+            color: var(--verde-oscuro);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 209, 102, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 209, 102, 0.6);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+            background: var(--blanco);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23a8e6cf" stroke-width="1" opacity="0.1"/></svg>');
+            background-size: 20px 20px;
+            z-index: 0;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(168, 230, 207, 0.2), rgba(255, 209, 102, 0.2));
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--sombra);
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--verde-oscuro);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--verde-oscuro);
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: var(--blanco);
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--verde-claro), rgba(168, 230, 207, 0.3));
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 25px var(--sombra);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradiente);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px var(--sombra-profunda);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--verde-oscuro);
+            margin-bottom: 1.5rem;
+            background: var(--gradiente);
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 209, 102, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--verde-oscuro);
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--verde-claro), rgba(168, 230, 207, 0.5));
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            background: var(--blanco);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px var(--sombra);
+            transition: transform 0.3s;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: var(--verde-oscuro);
+            background: var(--gradiente);
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--verde-oscuro);
+        }
+
+        .benefit-content p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* News Section */
+        .news {
+            padding: 4rem 0;
+            background: var(--blanco);
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: var(--blanco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px var(--sombra);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: var(--verde-oscuro);
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--verde-oscuro);
+        }
+
+        .news-content p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .news-link {
+            color: var(--verde-oscuro);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s;
+        }
+
+        .news-link:hover {
+            gap: 10px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--verde-oscuro), rgba(45, 106, 79, 0.9));
+            color: var(--blanco);
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--amarillo-patito);
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Sección Nosotros */
+        #nosotros {
+            background: linear-gradient(to bottom, var(--blanco), var(--verde-claro));
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--verde-oscuro);
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradiente);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .about-text p {
+            margin-bottom: 1.8rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--sombra-profunda);
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80%;
+            height: 80%;
+            border: 4px solid var(--amarillo-patito);
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        /* Mission Vision Section */
+        .mission-vision {
+            padding: 4rem 0;
+            background: var(--blanco);
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .mv-item {
+            background: linear-gradient(135deg, var(--verde-claro), rgba(168, 230, 207, 0.3));
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px var(--sombra);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .mv-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .mv-icon {
+            font-size: 3rem;
+            color: var(--verde-oscuro);
+            margin-bottom: 1.5rem;
+            background: var(--gradiente);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 209, 102, 0.4);
+        }
+
+        .mv-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--verde-oscuro);
+        }
+
+        .mv-item p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--verde-claro), rgba(168, 230, 207, 0.5));
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .timeline-container {
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--gradiente);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+            margin-right: 50%;
+            padding-right: 3rem;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 50%;
+            margin-right: 0;
+            padding-left: 3rem;
+            text-align: left;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--gradiente);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--verde-oscuro);
+            box-shadow: 0 5px 15px var(--sombra);
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: var(--blanco);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px var(--sombra);
+        }
+
+        .timeline-date {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--amarillo-patito);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--verde-oscuro);
+        }
+
+        .timeline-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 4rem 0;
+            background: var(--blanco);
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(168, 230, 207, 0.3), rgba(255, 209, 102, 0.2));
+            border-radius: 15px;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 10px 25px var(--sombra);
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial-card::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            color: rgba(45, 106, 79, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--amarillo-patito);
+        }
+
+        .author-info h4 {
+            font-size: 1.2rem;
+            color: var(--verde-oscuro);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--verde-oscuro);
+            opacity: 0.8;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--verde-claro), rgba(168, 230, 207, 0.5));
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: var(--blanco);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--sombra-profunda);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-15px);
+        }
+
+        .member-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--verde-oscuro);
+        }
+
+        .member-info p {
+            color: var(--verde-oscuro);
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .member-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--verde-claro);
+            border-radius: 50%;
+            color: var(--verde-oscuro);
+            transition: all 0.3s;
+        }
+
+        .member-social a:hover {
+            background: var(--amarillo-patito);
+            transform: translateY(-5px);
+        }
+
+        /* Sección Servicios */
+        #servicios {
+            background: linear-gradient(to bottom, var(--verde-claro), var(--blanco));
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: var(--blanco);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 15px 30px var(--sombra-profunda);
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradiente);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s;
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            color: var(--verde-oscuro);
+            margin-bottom: 1.5rem;
+            background: var(--gradiente);
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(255, 209, 102, 0.3);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 209, 102, 0.5);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--verde-oscuro);
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .service-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--verde-oscuro);
+            padding: 10px 25px;
+            border: 2px solid var(--verde-oscuro);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .service-btn:hover {
+            background: var(--verde-oscuro);
+            color: var(--blanco);
+        }
+
+        /* Service Details Section */
+        .service-details {
+            padding: 4rem 0;
+            background: var(--blanco);
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, var(--verde-claro), rgba(168, 230, 207, 0.3));
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px var(--sombra);
+            transition: transform 0.3s;
+        }
+
+        .detail-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .detail-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .detail-item:hover .detail-image img {
+            transform: scale(1.1);
+        }
+
+        .detail-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--verde-oscuro);
+        }
+
+        .detail-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .detail-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--verde-oscuro);
+            margin-bottom: 1rem;
+        }
+
+        .detail-btn {
+            align-self: flex-start;
+            background: var(--verde-oscuro);
+            color: var(--blanco);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .detail-btn:hover {
+            background: var(--amarillo-patito);
+            color: var(--verde-oscuro);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--verde-claro), rgba(168, 230, 207, 0.5));
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px var(--sombra);
+            height: 250px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(45, 106, 79, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-icon {
+            font-size: 2.5rem;
+            color: var(--blanco);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 0;
+            background: var(--blanco);
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .faq-container {
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, var(--verde-claro), rgba(168, 230, 207, 0.3));
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--sombra);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--verde-oscuro);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--verde-oscuro);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--verde-oscuro), rgba(45, 106, 79, 0.9));
+            color: var(--blanco);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 209, 102, 0.1) 0%, transparent 70%);
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .contact .section-title {
+            color: var(--blanco);
+        }
+
+        .contact .section-title::after {
+            background: var(--amarillo-patito);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--amarillo-patito);
+            font-weight: 600;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--amarillo-patito);
+            margin-right: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .contact-item strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--amarillo-patito);
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--blanco);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--blanco);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--amarillo-patito);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 209, 102, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--verde-oscuro);
+            color: var(--blanco);
+            padding: 3rem 0 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradiente);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--amarillo-patito);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--amarillo-patito);
+        }
+
+        .footer-column p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--amarillo-patito);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--blanco);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--amarillo-patito);
+            color: var(--verde-oscuro);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--verde-oscuro);
+            color: var(--blanco);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--sombra-profunda);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            max-width: 350px;
+            border-left: 5px solid var(--amarillo-patito);
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification-icon {
+            font-size: 1.5rem;
+            color: var(--amarillo-patito);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .lightbox.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s;
+        }
+
+        .lightbox.show .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--blanco);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--amarillo-patito);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .banner h2 {
+                font-size: 2.5rem;
+            }
+            
+            .banner p {
+                font-size: 1.1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content,
+            .contact-content,
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-container::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+                margin-right: 0;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                text-align: left;
+            }
+            
+            .timeline-icon {
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                gap: 10px;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .banner {
+                height: 40vh;
+            }
+            
+            .banner h2 {
+                font-size: 2rem;
+            }
+            
+            .banner p {
+                font-size: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .banner {
+                height: 30vh;
+            }
+            
+            .banner h2 {
+                font-size: 1.8rem;
+            }
+            
+            .banner p {
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+
+            .service-card,
+            .feature-card {
+                padding: 2rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 50px;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .timeline-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <img src="https://z-cdn-media.chatglm.cn/files/3d90c3a9-3294-47fb-b413-651325e356c6_WhatsApp%20Image%202025-09-04%20at%2015.44.29.jpeg?auth_key=1788533607-1f191769a3f04cb0a4bd53478e96b739-0-908cf5c8078bf21202e7685519836a56" alt="Inti Frut Logo" class="logo">
+                <div class="logo-text">
+                    <h1>Inti Frut</h1>
+                    <p>Sabor saludable</p>
+                </div>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a class="nav-link active" data-section="inicio">Inicio</a></li>
+                    <li><a class="nav-link" data-section="nosotros">Nosotros</a></li>
+                    <li><a class="nav-link" data-section="servicios">Servicios</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Inicio -->
+    <section id="inicio" class="section active">
+        <div class="container">
+            <!-- Hero -->
+            <div class="hero">
+                <div class="hero-content">
+                    <h2>Transformando frutas en delicias saludables</h2>
+                    <p>Aprovechamos frutas que están a punto de malograrse para crear postres nutritivos y deliciosos, contribuyendo al cuidado del medio ambiente.</p>
+                    <a class="btn" data-section="servicios">Conoce nuestros servicios</a>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats reveal">
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="500">0</div>
+                        <div class="stat-label">Kg de frutas salvadas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="1200">0</div>
+                        <div class="stat-label">Postres elaborados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label">Eventos escolares</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label">Estudiantes felices</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="features reveal">
+                <h2 class="section-title">Nuestros Valores</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Sostenibilidad</h3>
+                        <p>Reducimos el desperdicio de alimentos y promovemos prácticas ecológicas en nuestra comunidad escolar.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Salud</h3>
+                        <p>Ofrecemos productos nutritivos y naturales, libres de conservantes artificiales para una alimentación saludable.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Educación</h3>
+                        <p>Fomentamos hábitos de consumo responsable y valoramos la importancia de una alimentación balanceada.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits -->
+            <div class="benefits reveal">
+                <h2 class="section-title">Beneficios de Nuestros Productos</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>100% Natural</h3>
+                            <p>Nuestros postres están elaborados con frutas frescas y naturales, sin conservantes ni aditivos artificiales.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Sostenibles</h3>
+                            <p>Contribuimos a reducir el desperdicio de alimentos y promovemos una economía circular en nuestra comunidad.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Nutritivos</h3>
+                            <p>Conservamos las vitaminas, minerales y antioxidantes de las frutas en nuestro proceso de deshidratación.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Larga Duración</h3>
+                            <p>Nuestros productos deshidratados tienen una vida útil prolongada sin perder sus propiedades nutricionales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News -->
+            <div class="news reveal">
+                <h2 class="section-title">Últimas Noticias</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Noticia 1">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">15 de mayo, 2023</div>
+                            <h3>Inti Frut gana premio de innovación escolar</h3>
+                            <p>Nuestro proyecto ha sido reconocido por su contribución a la sostenibilidad y la educación alimentaria en la comunidad.</p>
+                            <a href="#" class="news-link">Leer más <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Noticia 2">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">3 de mayo, 2023</div>
+                            <h3>Nuevo taller de conservación de frutas</h3>
+                            <p>Este mes iniciamos un nuevo taller para enseñar a la comunidad técnicas de conservación de frutas en casa.</p>
+                            <a href="#" class="news-link">Leer más <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Noticia 3">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">20 de abril, 2023</div>
+                            <h3>Alianza con mercados locales para reducir desperdicio</h3>
+                            <p>Hemos establecido alianzas con tres mercados locales para recolectar frutas que de otro modo serían desechadas.</p>
+                            <a href="#" class="news-link">Leer más <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta reveal">
+                <h2>¿Listo para unirse a nuestra causa?</h2>
+                <p>Descubre cómo puedes contribuir a reducir el desperdicio de alimentos y disfrutar de productos saludables y deliciosos.</p>
+                <a class="btn" data-section="servicios">Únete ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section id="nosotros" class="section">
+        <!-- Banner Nosotros -->
+        <div class="banner" style="background-image: url('https://images.unsplash.com/photo-1523381210436-8c93a3137f95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
+            <div class="banner-content">
+                <h2>Conoce Nuestra Historia</h2>
+                <p>Un emprendimiento escolar con propósito, dedicado a transformar frutas en oportunidades saludables.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title reveal">Sobre Inti Frut</h2>
+            <div class="about-content">
+                <div class="about-text reveal-left">
+                    <p>Inti Frut nació en 2021 como un proyecto escolar con una misión clara: combatir el desperdicio de alimentos y promover hábitos alimenticios saludables en nuestra comunidad. Lo que comenzó como una pequeña iniciativa en el aula, se ha convertido en un emprendimiento reconocido que impacta positivamente a cientos de estudiantes y familias.</p>
+                    <p>Nuestro proceso es simple pero efectivo: recolectamos frutas que están a punto de malograrse de mercados locales y donaciones, las seleccionamos cuidadosamente, y las transformamos en deliciosos postres deshidratados mediante un proceso natural que conserva todos sus nutrientes y sabores.</p>
+                    <p>Cada producto que elaboramos no solo es una opción saludable, sino también una pequeña contribución a un planeta más sostenible. Creemos firmemente que la educación es la clave para generar un cambio real, por eso dedicamos gran parte de nuestros esfuerzos a talleres y actividades educativas.</p>
+                    <p>El nombre "Inti" viene del quechua y significa "sol", reflejando nuestra inspiración en la energía natural que nos permite deshidratar las frutas y en nuestra misión de llevar luz y conocimiento a nuestra comunidad sobre la importancia de no desperdiciar alimentos.</p>
+                </div>
+                <div class="about-image reveal-right">
+                    <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Frutas saludables">
+                </div>
+            </div>
+
+            <!-- Mission Vision -->
+            <div class="mission-vision reveal">
+                <h2 class="section-title">Misión, Visión y Valores</h2>
+                <div class="mv-grid">
+                    <div class="mv-item">
+                        <div class="mv-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Misión</h3>
+                        <p>Transformar frutas que están a punto de malograrse en productos nutritivos y deliciosos, reduciendo el desperdicio de alimentos y educando a nuestra comunidad sobre hábitos de consumo responsable y alimentación saludable.</p>
+                    </div>
+                    <div class="mv-item">
+                        <div class="mv-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Visión</h3>
+                        <p>Convertirnos en un modelo de emprendimiento escolar sostenible a nivel nacional, inspirando a otras comunidades a adoptar prácticas responsables de consumo y producción de alimentos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline reveal">
+                <h2 class="section-title">Nuestra Historia</h2>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Marzo 2021</div>
+                            <h3>La Idea</h3>
+                            <p>Un grupo de estudiantes identifica el problema del desperdicio de frutas en los mercados locales y propone una solución.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Junio 2021</div>
+                            <h3>Primeros Experimentos</h3>
+                            <p>Comenzamos a experimentar con técnicas de deshidratación natural en el laboratorio de ciencias del colegio.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Septiembre 2021</div>
+                            <h3>Primera Alianza</h3>
+                            <p>Establecemos nuestra primera alianza con un mercado local para recolectar frutas que serían desechadas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Noviembre 2021</div>
+                            <h3>Reconocimiento</h3>
+                            <p>Ganamos el primer premio en la feria de ciencias escolar por nuestro proyecto innovador y sostenible.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Marzo 2022</div>
+                            <h3>Expansión</h3>
+                            <p>Inauguramos nuestro pequeño espacio de producción en el colegio y comenzamos a vender nuestros productos a la comunidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team -->
+            <div class="team reveal">
+                <h2 class="section-title">Nuestro Equipo</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80" alt="Ana García">
+                        </div>
+                        <div class="member-info">
+                            <h3>Ana García</h3>
+                            <p>Fundadora y Directora</p>
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Carlos Mendoza">
+                        </div>
+                        <div class="member-info">
+                            <h3>Carlos Mendoza</h3>
+                            <p>Especialista en Nutrición</p>
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Laura Fernández">
+                        </div>
+                        <div class="member-info">
+                            <h3>Laura Fernández</h3>
+                            <p>Coordinadora de Eventos</p>
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Miguel Sánchez">
+                        </div>
+                        <div class="member-info">
+                            <h3>Miguel Sánchez</h3>
+                            <p>Experto en Producción</p>
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="testimonials reveal">
+                <h2 class="section-title">Testimonios</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Los postres de Inti Frut son deliciosos y saludables. Mis hijos los adoran y yo me siento bien sabiendo que están comiendo algo natural y nutritivo. Además, me encanta que estén enseñando a los niños sobre la importancia de no desperdiciar alimentos."</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María González" class="author-avatar">
+                            <div class="author-info">
+                                <h4>María González</h4>
+                                <p>Madre de familia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Como docente, valoro mucho la iniciativa de Inti Frut. No solo ofrecen productos saludables, sino que educan a nuestros estudiantes sobre la importancia de no desperdiciar alimentos. Los talleres que han organizado han sido excelentes y muy bien recibidos por los alumnos."</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Rodríguez" class="author-avatar">
+                            <div class="author-info">
+                                <h4>Carlos Rodríguez</h4>
+                                <p>Profesor de biología</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Participé en el taller de Inti Frut y aprendí muchas técnicas para aprovechar las frutas. Ahora puedo preparar postres deliciosos en casa sin desperdiciar nada. Es maravilloso ver cómo estos jóvenes están generando un cambio positivo en nuestra comunidad."</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana Fernández" class="author-avatar">
+                            <div class="author-info">
+                                <h4>Ana Fernández</h4>
+                                <p>Estudiante</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Como dueña de un mercado local, la alianza con Inti Frut ha sido beneficiosa para todos. Reducimos nuestro desperdicio de frutas, apoyamos una causa social y recibimos productos deliciosos a cambio. Es una relación ganar-ganer que esperamos continúe por mucho tiempo."</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Roberto Silva" class="author-avatar">
+                            <div class="author-info">
+                                <h4>Roberto Silva</h4>
+                                <p>Dueño de mercado local</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Servicios -->
+    <section id="servicios" class="section">
+        <!-- Banner Servicios -->
+        <div class="banner" style="background-image: url('https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
+            <div class="banner-content">
+                <h2>Nuestros Servicios</h2>
+                <p>Descubre cómo transformamos frutas en delicias saludables para toda la comunidad escolar.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>Elaboración de postres saludables</h3>
+                    <p>Transformamos frutas que están a punto de malograrse en postres deshidratados deliciosos y nutritivos. Cada producto conserva su sabor y nutrientes, ofreciendo opciones saludables para estudiantes, docentes y la comunidad escolar.</p>
+                    <p>Nuestro proceso incluye selección cuidadosa de frutas, lavado, corte, deshidratación natural a bajas temperaturas y envasado higiénico. Todo sin conservantes ni aditivos artificiales.</p>
+                    <a href="#" class="service-btn">Ver productos</a>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Asesoramiento y educación</h3>
+                    <p>Brindamos orientación sobre cómo aprovechar los alimentos de manera responsable, reducir el desperdicio de frutas y preparar postres naturales. Compartimos recetas y consejos prácticos para fomentar hábitos de vida saludables.</p>
+                    <p>Ofrecemos talleres presenciales y virtuales para escuelas, comunidades y familias, adaptados a diferentes edades y conocimientos. Nuestro objetivo es empoderar a las personas para que tomen decisiones alimenticias más conscientes.</p>
+                    <a href="#" class="service-btn">Conocer más</a>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Pedidos personalizados y eventos</h3>
+                    <p>Ofrecemos servicios para desayunos saludables, refrigerios en celebraciones escolares y kits de postres para actividades especiales. Así, Inti Frut promueve la sostenibilidad, la creatividad y la conciencia ecológica dentro de la escuela.</p>
+                    <p>Personalizamos nuestros servicios según las necesidades de cada evento, asegurando que todos los participantes disfruten de opciones deliciosas y nutritivas mientras aprenden sobre la importancia de reducir el desperdicio de alimentos.</p>
+                    <a href="#" class="service-btn">Solicitar servicio</a>
+                </div>
+            </div>
+
+            <!-- Service Details -->
+            <div class="service-details reveal">
+                <h2 class="section-title">Nuestros Productos</h2>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-image">
+                            <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Frutas deshidratadas">
+                        </div>
+                        <div class="detail-content">
+                            <h3>Frutas Deshidratadas</h3>
+                            <p>Nuestras frutas deshidratadas conservan todo el sabor y nutrientes de la fruta fresca. Disponibles en variedades como mango, piña, manzana, plátano y fresa. Perfectas como snack saludable o para añadir a tus desayunos y postres.</p>
+                            <div class="detail-price">Desde S/. 15.00</div>
+                            <a href="#" class="detail-btn">Comprar ahora</a>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-image">
+                            <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Barritas energéticas">
+                        </div>
+                        <div class="detail-content">
+                            <h3>Barritas Energéticas</h3>
+                            <p>Elaboradas con nuestras frutas deshidratadas, nueces y semillas, sin azúcares añadidos ni conservantes. Ideales para un snack rápido y nutritivo entre comidas o antes de actividad física.</p>
+                            <div class="detail-price">Desde S/. 8.00</div>
+                            <a href="#" class="detail-btn">Comprar ahora</a>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-image">
+                            <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Mix de frutas">
+                        </div>
+                        <div class="detail-content">
+                            <h3>Mix de Frutas</h3>
+                            <p>Combinaciones cuidadosamente seleccionadas de diferentes frutas deshidratadas que ofrecen una experiencia de sabor única y un perfil nutricional equilibrado. Disponibles en varias presentaciones y tamaños.</p>
+                            <div class="detail-price">Desde S/. 20.00</div>
+                            <a href="#" class="detail-btn">Comprar ahora</a>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-image">
+                            <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Kits escolares">
+                        </div>
+                        <div class="detail-content">
+                            <h3>Kits Escolares</h3>
+                            <p>Paquetes especiales diseñados para el consumo escolar, con porciones individuales y presentaciones atractivas para los niños. Incluyen información educativa sobre la importancia de reducir el desperdicio de alimentos.</p>
+                            <div class="detail-price">Desde S/. 25.00</div>
+                            <a href="#" class="detail-btn">Comprar ahora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery -->
+            <div class="gallery reveal">
+                <h2 class="section-title">Galería de Productos</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Frutas deshidratadas">
+                        <div class="gallery-overlay">
+                            <div class="gallery-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Postre de frutas">
+                        <div class="gallery-overlay">
+                            <div class="gallery-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Frutas tropicales">
+                        <div class="gallery-overlay">
+                            <div class="gallery-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Ensalada de frutas">
+                        <div class="gallery-overlay">
+                            <div class="gallery-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Frutas frescas">
+                        <div class="gallery-overlay">
+                            <div class="gallery-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Postre saludable">
+                        <div class="gallery-overlay">
+                            <div class="gallery-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Frutas variadas">
+                        <div class="gallery-overlay">
+                            <div class="gallery-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Postre creativo">
+                        <div class="gallery-overlay">
+                            <div class="gallery-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="faq reveal">
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ¿Cómo conservan las frutas sus nutrientes al deshidratarlas?
+                            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Utilizamos un proceso de deshidratación a bajas temperaturas que permite conservar la mayoría de las vitaminas, minerales y antioxidantes de las frutas. Este método es mucho más efectivo que otros procesos industriales que utilizan altas temperaturas y pueden degradar los nutrientes.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ¿Cuánto tiempo duran los productos deshidratados?
+                            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Nuestros productos tienen una vida útil de aproximadamente 6 meses si se almacenan en un lugar fresco, seco y oscuro, y en su envase original herméticamente cerrado. Una vez abierto el paquete, recomendamos consumir el producto en un plazo de 2-3 semanas para disfrutar de su máximo sabor y textura.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ¿Ofrecen opciones para personas con alergias o restricciones alimentarias?
+                            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Sí, ofrecemos opciones sin gluten, sin lactosa y sin frutos secos para personas con alergias o intolerancias alimentarias. Todos nuestros productos son naturalmente veganos y no contienen conservantes ni aditivos artificiales. Si tienes alguna restricción alimentaria específica, no dudes en contactarnos para que podamos ayudarte.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ¿Cómo puedo participar en el proyecto o colaborar con Inti Frut?
+                            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Hay varias formas de colaborar con nosotros: puedes comprar nuestros productos, donar frutas que estén a punto de malograrse, participar en nuestros talleres educativos, o incluso patrocinar alguno de nuestros proyectos escolares. También aceptamos voluntarios que quieran ayudarnos en el proceso de producción o en la organización de eventos.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ¿Realizan envíos a nivel nacional?
+                            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Actualmente realizamos envíos a nivel nacional a través de nuestro servicio de mensajería. Los costos de envío varían según la ubicación y el tamaño del pedido. Para pedidos grandes o institucionales, ofrecemos descuentos especiales en los costos de envío. Puedes consultar las tarifas exactas al realizar tu pedido.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="contact reveal">
+                <h2 class="section-title">Contáctanos</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Información de Contacto</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <strong>Teléfono</strong>
+                                <p>953412725</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong>Correo electrónico</strong>
+                                <p>info@intifrut.edu</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <strong>Ubicación</strong>
+                                <p>Colegio Ejemplo, Lima, Perú</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <strong>Horario de atención</strong>
+                                <p>Lunes a Viernes: 8:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Envíanos un mensaje</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Nombre completo</label>
+                                <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo electrónico</label>
+                                <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Asunto</label>
+                                <input type="text" id="subject" name="subject" placeholder="Asunto del mensaje" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mensaje</label>
+                                <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Enviar mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Inti Frut</h3>
+                    <p>Transformando frutas en delicias saludables para una comunidad más sostenible y consciente.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a class="nav-link" data-section="inicio">Inicio</a></li>
+                        <li><a class="nav-link" data-section="nosotros">Nosotros</a></li>
+                        <li><a class="nav-link" data-section="servicios">Servicios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Postres saludables</a></li>
+                        <li><a href="#">Asesoramiento</a></li>
+                        <li><a href="#">Eventos escolares</a></li>
+                        <li><a href="#">Talleres educativos</a></li>
+                        <li><a href="#">Pedidos personalizados</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-phone"></i> 953412725</p>
+                    <p><i class="fas fa-envelope"></i> info@intifrut.edu</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Colegio Ejemplo, Lima, Perú</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Inti Frut. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightbox-close">&times;</span>
+            <img src="" alt="Imagen ampliada" id="lightbox-img">
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <div class="notification-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <p id="notification-text">Mensaje enviado correctamente</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Section navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+        
+        function showSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Close mobile menu if open
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                showSection(sectionId);
+            });
+        });
+
+        // Buttons that navigate to sections
+        document.querySelectorAll('.btn[data-section]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = btn.getAttribute('data-section');
+                showSection(sectionId);
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Show notification
+            notificationText.textContent = `Gracias ${name}, tu mensaje ha sido enviado correctamente. Te contactaremos pronto.`;
+            notification.classList.add('show');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide notification after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        });
+
+        // Gallery lightbox
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                lightboxImg.src = imgSrc;
+                lightbox.classList.add('show');
+            });
+        });
+        
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('show');
+        });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('show');
+            }
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Stats counter animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        const animateStats = () => {
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCount = () => {
+                    current += increment;
+                    if (current < target) {
+                        stat.textContent = Math.ceil(current);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        stat.textContent = target;
+                    }
+                };
+                
+                updateCount();
+            });
+        };
+
+        // Intersection Observer for animations
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const statsSection = document.querySelector('.stats');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const revealPoint = 150;
+            
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+            
+            // Animate stats when visible
+            const statsTop = statsSection.getBoundingClientRect().top;
+            if (statsTop < windowHeight - revealPoint && !statsSection.classList.contains('animated')) {
+                statsSection.classList.add('animated');
+                animateStats();
+            }
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(90deg, rgba(45, 106, 79, 0.95), rgba(45, 106, 79, 0.95))';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'linear-gradient(90deg, var(--verde-oscuro), rgba(45, 106, 79, 0.9))';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+            }
+        });
+
+        // Initialize animations on page load
+        revealOnScroll();
+    </script>
+</body>
+</html>
